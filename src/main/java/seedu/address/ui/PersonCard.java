@@ -33,6 +33,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label remark;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
