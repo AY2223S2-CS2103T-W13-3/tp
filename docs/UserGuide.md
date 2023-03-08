@@ -20,7 +20,7 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png) 
+   ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -132,11 +132,20 @@ Format: `find n/{NAME}` OR `find d/{DESCRIPTION}` OR `find t/{TAG}...`
 * The search is case-insensitive. e.g `book` will match `Book`
 * Use only 1 attribute at a time.
 * Substrings will be matched e.g. `book` will match `Books`
-* For tags, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
+* For names and descriptions, you may use the `all/` prefix to search for a task that contains all of your inputs
+  * e.g. `find all/ n/do n/homework` will match a task with a name called "do math homework.
+* For tags, if you do not specify the `all/` prefix, as long as one tag matches with one of the tags you are searching for, it will be considered matched.
+However, adding `all/` means that a task which contains all your tag inputs will be displayed.
   * e.g. `find t/very urgent t/important` will match with tags `t/very very urgent t/math t/hard` since it has `very urgent`.
+  * e.g. `find all/ t/very urgent t/important` will match with tags `t/very urgent t/important` since it has both tags.
+* For deadlines, you can only use a valid date(without the time input) such as `2023-03-10` to search for deadlines on that day.
+  * e.g. `find D/2023-03-10` will give you all the deadlines on 2023-01-01.
+* For events, you may either use `F/` or `T/` prefix(without the time input as well) to search for event that starts or ends on a certain date.
+  * e.g. `find F/2023-03-10` will give you all the events starting from 2023-03-10.
+  * e.g. `find T/2023-03-10` will give you all the event ending on 2023-03-10.
 
 Examples:
-* `find book` returns `read book` and `return books`
+* `find n/book` returns `read book` and `return books`
 
 ### Deleting a task : `delete`
 
@@ -156,9 +165,28 @@ Examples:
 
 ### Getting statistics : `stats`
 
-Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks. 
+Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
 
 Format: `stats`
+
+### Sorting tasks : `sort`
+
+Sorts the list using the following format:
+
+    1. SimpleTask
+        1.1. Sort by tags size.
+        1.2. If tags size are the same, sort by name.
+    2. Deadline
+        2.1. Sort by earliest deadline.
+        2.2. If deadlines are the same, sort by tags size.
+        2.3. If tags size are the same, sort by name.
+    3. Event
+        3.1. Sort by earliest "from" date.
+        3.2. If "from" date is the same, sort by earliest "to" date.
+        3.3. If "to" date is the same, sort by tags size.
+        3.4. If tags size are the same, sort by name.
+
+Format: `sort`
 
 ### Clearing all entries : `clear`
 
@@ -208,3 +236,5 @@ _Details coming soon ..._
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+| **Stats**  | `stats`                                                                                                                                                               |
+| **sort**   | `sort`                                                                                                                                                                |

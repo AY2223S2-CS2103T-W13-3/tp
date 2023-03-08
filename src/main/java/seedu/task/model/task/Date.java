@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.task.commons.util.AppUtil.checkArgument;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import seedu.task.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a Task's date in the task book.
@@ -12,6 +15,7 @@ import java.time.LocalDateTime;
  */
 public class Date implements Comparable<Date> {
 
+    public static final String MESSAGE_INVALID_DATE = "Date must be valid and does not contain the time";
     public static final String MESSAGE_CONSTRAINTS = "Date must be valid";
     public final LocalDateTime value;
 
@@ -70,6 +74,34 @@ public class Date implements Comparable<Date> {
         String minute = String.format("%02d", value.getMinute());
         return month + " " + day + " " + year + " " + hour + minute;
     }
+
+    /**
+     * Checks whether a date is a valid date
+     * @param test The string input representing a date
+     * @return True or False
+     */
+    public static String parseFindDate(String test) throws ParseException {
+        try {
+            String toParse = formatDateOnly(test);
+            LocalDate.parse(toParse);
+            return toParse;
+        } catch (DateTimeException | IndexOutOfBoundsException e) {
+            throw new ParseException(MESSAGE_INVALID_DATE);
+        }
+    }
+
+    /**
+     * Trims the date for checking
+     * @param input The date in form of a string
+     * @return A trimmed string
+     * @throws IndexOutOfBoundsException
+     */
+    public static String formatDateOnly(String input) throws IndexOutOfBoundsException {
+        String dateTime = input.trim();
+        return dateTime;
+    }
+
+
 
     /**
      * Returns a full information String which can be parsed back into a DateTime.

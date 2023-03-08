@@ -16,18 +16,23 @@ public class TagsContainsKeywordsPredicateTest {
         String[] firstPredicateKeyword = {"first"};
         String[] secondPredicateKeyword = {"second"};
 
+
+
         TagsContainsKeywordsPredicate firstPredicate =
                 new TagsContainsKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
         TagsContainsKeywordsPredicate secondPredicate =
                 new TagsContainsKeywordsPredicate(Arrays.asList(secondPredicateKeyword));
 
+
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
+
 
         // same values -> returns true
         TagsContainsKeywordsPredicate firstPredicateCopy =
                 new TagsContainsKeywordsPredicate(Arrays.asList(firstPredicateKeyword));
         assertTrue(firstPredicate.equals(firstPredicateCopy));
+
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
@@ -37,6 +42,7 @@ public class TagsContainsKeywordsPredicateTest {
 
         // different task -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
+
     }
 
     @Test
@@ -57,6 +63,8 @@ public class TagsContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new TagsContainsKeywordsPredicate(Arrays.asList(tag[2]));
         assertTrue(predicate.test(new SimpleTaskBuilder().withTags("urgent").build()));
+
+
     }
 
     @Test

@@ -12,4 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DEADLINE = new Prefix("D/");
     public static final Prefix PREFIX_FROM = new Prefix("F/");
     public static final Prefix PREFIX_TO = new Prefix("T/");
+    public static final Prefix PREFIX_ALLMATCH = new Prefix("all/");
 }

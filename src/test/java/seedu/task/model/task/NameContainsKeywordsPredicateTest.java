@@ -24,6 +24,8 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
+
+
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
 
@@ -51,6 +53,8 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate("aLicE bOB");
         assertTrue(predicate.test(new SimpleTaskBuilder().withName("Alice Bob").build()));
+
+
     }
 
     @Test
@@ -65,5 +69,6 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate("likes to play");
         assertFalse(predicate.test(new SimpleTaskBuilder()
                 .withName("Alice").withDescription("likes to play").build()));
+
     }
 }

@@ -2,8 +2,10 @@ package seedu.task.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.task.commons.core.index.Index;
@@ -81,6 +83,20 @@ public class ParserUtil {
     }
 
     /**
+     * Changes a set of names to a list of names
+     * @param names The set of names
+     * @return The corresponding list of names
+     */
+    public static List<String> parseNamesToList(Set<Name> names) {
+        requireNonNull(names);
+        List<String> nameList = new ArrayList<>();
+        for (Name cur: names) {
+            nameList.add(cur.toString());
+        }
+        return nameList;
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -93,6 +109,35 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(description);
+    }
+
+    /**
+     * Parses a {@code Collection string} into a {@code Set description}
+     * @param descriptions The collection of descriptions
+     * @return The descriptions as a set
+     * @throws ParseException if the given{@code descriptions is invalid}
+     */
+    public static Set<Description> parseDescriptions(Collection<String> descriptions) throws ParseException {
+        requireNonNull(descriptions);
+        final Set<Description> descriptionSet = new HashSet<>();
+        for (String cur: descriptions) {
+            descriptionSet.add(parseDescription(cur));
+        }
+        return descriptionSet;
+    }
+
+    /**
+     * Returns a list of strings from the set of descriptions
+     * @param descriptions The set of descriptions
+     * @return A list of string
+     */
+    public static List<String> parseDescriptionsToList(Set<Description> descriptions) {
+        requireNonNull(descriptions);
+        final List<String> descriptionList = new ArrayList<>();
+        for (Description cur: descriptions) {
+            descriptionList.add(cur.toString());
+        }
+        return descriptionList;
     }
 
     /**
@@ -109,6 +154,8 @@ public class ParserUtil {
         }
         return new Date(trimmedDate);
     }
+
+
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -136,4 +183,19 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code List<String>}.
+     */
+    public static List<String> parseTagsToList(Set<Tag> tags) {
+        requireNonNull(tags);
+        List<String> tagList = new ArrayList<>();
+        for (Tag cur: tags) {
+            tagList.add(cur.getTagName());
+        }
+        System.out.println(tagList);
+        return tagList;
+    }
+
+
 }

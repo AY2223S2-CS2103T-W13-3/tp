@@ -13,7 +13,7 @@ import seedu.task.model.task.Task;
 
 /**
  * Finds and lists all tasks in task book whose name/tag/description matches the argument.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -27,7 +27,7 @@ public class FindCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "books";
 
-    private final Predicate<Task> predicate;
+    public final Predicate<Task> predicate;
 
     public FindCommand(Predicate<Task> predicate) {
         this.predicate = predicate;

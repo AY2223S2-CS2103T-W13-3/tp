@@ -36,6 +36,7 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalList.stream().anyMatch(toCheck::isSameTask);
     }
 
+
     /**
      * Adds a task to the list.
      * The task must not already exist in the list.

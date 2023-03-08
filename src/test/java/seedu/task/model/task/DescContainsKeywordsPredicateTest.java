@@ -51,6 +51,7 @@ public class DescContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new DescContainsKeywordsPredicate("rEaD BoOK");
         assertTrue(predicate.test(new SimpleTaskBuilder().withDescription("read book").build()));
+
     }
 
     @Test
@@ -64,5 +65,6 @@ public class DescContainsKeywordsPredicateTest {
         predicate = new DescContainsKeywordsPredicate("Alice");
         assertFalse(predicate.test(new SimpleTaskBuilder()
                 .withName("Alice").withDescription("likes to play").build()));
+
     }
 }

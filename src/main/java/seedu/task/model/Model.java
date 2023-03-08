@@ -57,6 +57,7 @@ public interface Model {
      */
     boolean hasTask(Task task);
 
+
     /**
      * Deletes the given task.
      * The task must exist in the task book.

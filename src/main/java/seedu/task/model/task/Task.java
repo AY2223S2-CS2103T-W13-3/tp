@@ -48,6 +48,7 @@ public abstract class Task implements Comparable<Task> {
         return Collections.unmodifiableSet(tags);
     }
 
+
     /**
      * Returns true if both tasks have the same name.
      * This defines a weaker notion of equality between two tasks.
