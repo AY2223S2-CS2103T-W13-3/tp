@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
