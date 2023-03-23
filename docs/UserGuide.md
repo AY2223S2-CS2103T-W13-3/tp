@@ -6,39 +6,23 @@ title: User Guide
 Clock-Work is a **desktop app for managing tasks, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Clock-Work can get your assignment management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-  * [1. Quick start](#1-quick-start)
-  * [2. Features and commands](#2-features-and-commands)
-    * [2.1 help](#21-viewing-help--help)
-    * [2.2 add](#22-adding-a-task--add)
-    * [2.3 list](#23-listing-all-tasks--list)
-    * [2.4 edit](#24-editing-a-task--edit)
-    * [2.5 find](#25-locating-tasks-by-name--find)
-    * [2.6 delete](#26-deleting-a-task--delete)
-    * [2.7 stats](#27-getting-statistics--stats)
-    * [2.8 sort](#28-sorting-tasks--sort)
-    * [2.9 alert](#29-get-alerts--alert-alert-window)
-    * [2.10 plan](#210-plan-your-month--plan-effort)
-  * [3. Storage](#3-storage)
-    * [3.1 saving the data](#31-saving-the-data)
-    * [3.2 editing the data](#32-editing-the-data-file)
-  * [4. FAQ](#4-faq)
-  * [5. Command summary](#5-command-summary)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Quick start
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `clockwork.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-3/tp/releases). (Currently not available)
+1. Download the latest `clockwork.jar` from [here](https://github.com/AY2223S2-CS2103T-W13-3/tp/releases). (Currently not available)
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Clock-Work.
+1. Copy the file to the folder you want to use as the _home folder_ for your Clock-Work.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clockwork.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -51,21 +35,21 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features and commands](#2-features-and-commands) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Features and Commands
+## Features
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 * First word is assumed to be a command word (add/delete/list/find).
-* Each task **must** have a corresponding description.
+* Each task must have a corresponding description.
 * Words in `ALL CAPS` are the parameters to be supplied by the user.<br>
 
 * Items in square brackets are optional.<br>
-  e.g `n/TASK d/DESCRIPTION [tag/TAG]` can be used as `n/Read Book d/Intro to Competitive Programming tag/relax` or as `n/Read Book d/Intro to Competitive Programming t/relax`.
+  e.g `t/TASK [tag/TAG]` can be used as `t/Read Book tag/relax` or as `t/Read Book`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/important`, `tag/important t/urgent` etc.
@@ -79,42 +63,30 @@ Clock-Work is a **desktop app for managing tasks, optimized for use via a Comman
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* A valid Date (must be a legitimate date) must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM)
-
-* A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
-  e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
-
 </div>
 
-### 2.1 Viewing help : `help`
+### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### 2.2 Adding a task: `add`
-
-:speech_balloon: PRO TIP: Parameters that comes after the command can be in any order!
+### Adding a task: `add`
 
 Adds a task to the address book. There are 3 types of tasks. `SimpleTask`, `Deadline` and `Event`.
-For `Deadline` and `Event` date(s) are required.
-
-Dates should be in the format `YYYY-MM-DD HHMM`. ([What is a valid Date?](#q2--what-is-a-valid-date-br))
-
-By default, effort level is 24. ([What is an effort level?](#q3--what-is-an-effort-level-br))
-
-A Task must have a description.([What is a valid Description?](#q4--what-is-a-valid-description-br))
+For `Deadline` and `Event` date(s) are required. Dates should be in the format `YYYY-MM-DD HHmm`.
+By default, effort level is 24.
 
 Format:
 
-* SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]…​`
+- SimpleTask: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT]`
 
-* Deadline: `add n/TASKNAME d/DESCRIPTION D/DEADLINE [t/TAGS]…​ [E/EFFORT]…​`
+- Deadline: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] D/DEADLINE`
 
-* Event: `add n/TASKNAME d/DESCRIPTION F/FROMDATE T/TODATE [t/TAGS]…​ [E/EFFORT]…​`
+- Event: `add n/TASKNAME d/DESCRIPTION [t/TAGS]…​ [E/EFFORT] F/FROMDATE T/TODATE`
 
 You can add multiple tasks with the same parameters except for name with this command:`add n/TASKNAME1 n/TASKNAME2 d/DESCRIPTION [t/TAGS]…​`
 
@@ -130,13 +102,13 @@ Examples:
 * `add n/Read Book d/Make sure to take notes t/Leisure`
 * `add n/Return Book d/NUS library t/Urgent D/2023-01-01 1800`
 
-### 2.3 Listing all tasks : `list`
+### Listing all tasks : `list`
 
 Shows a list of all tasks in the address book.
 
 Format: `list`
 
-### 2.4 Editing a task : `edit`
+### Editing a task : `edit`
 
 Edits an existing task in the address book.
 
@@ -153,7 +125,7 @@ Examples:
 *  `edit 1 t/CS2102 t/URGENT` Edits the tags of the first task to now be `CS2102` and `URGENT`
 *  `edit 2 n/CS2102 Finals t/` Edits the name of the 2nd task to be `CS2102 Finals` and clears all existing tags.
 
-### 2.5 Locating tasks by name: `find`
+### Locating tasks by name: `find`
 
 Find tasks whose attribute best match the user input string.
 
@@ -177,7 +149,7 @@ However, adding `all/` means that a task which contains all your tag inputs will
 Examples:
 * `find n/book` returns `read book` and `return books`
 
-### 2.6 Deleting a task : `delete`
+### Deleting a task : `delete`
 
 Deletes the specified task from the address book.
 
@@ -193,37 +165,32 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### 2.7 Getting statistics : `stats`
+### Getting statistics : `stats`
 
 Prints the top 10 tags (if applicable) and its corresponding number of occurrences in the tasks.
 
 Format: `stats`
 
-### 2.8 Sorting tasks : `sort`
+### Sorting tasks : `sort`
 
 Sorts the list using the following format:
 
-* SimpleTask is listed above Deadline and Event.
-* Deadline is  listed below SimpleTask and above Event.
-* Event is  listed below SimpleTask and Event.
-* When comparing 2 tasks of the same class:
-    * SimpleTask
-        * The task with lesser tags is listed above the task with more tags.
-        * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
-    * Deadline
-        * The task with the earlier deadline is listed above the task with later deadline.
-        * Else if both tasks have the same deadline, the task with lesser tags is listed above the task with more tags.
-        * Else if both tasks have the same number of tags, the task with a smaller lexicographical name is listed above the other.
-    * Event
-        * The task with the earlier `from` attribute is listed above the task with a later `from` attribute.
-        * Else if both task have the same `from` attribute, the task with the earlier `to` attribute is listed above the task with later `to` attribute.
-        * Else if both task have the same `to` attribute, the task with lesser tags is listed above the task with more tags.
-        * Else if both tasks have the same number of tags, the task with a smaller lexicgraphical name is listed above the other.
-
+    1. SimpleTask
+        1.1. Sort by tags size.
+        1.2. If tags size are the same, sort by name.
+    2. Deadline
+        2.1. Sort by earliest deadline.
+        2.2. If deadlines are the same, sort by tags size.
+        2.3. If tags size are the same, sort by name.
+    3. Event
+        3.1. Sort by earliest "from" date.
+        3.2. If "from" date is the same, sort by earliest "to" date.
+        3.3. If "to" date is the same, sort by tags size.
+        3.4. If tags size are the same, sort by name.
 
 Format: `sort`
 
-### 2.9 Get alerts : `alert [ALERT WINDOW]`
+### Get alerts : `alert [ALERT WINDOW]`
 
 Displays in another window the tasks that fall within the window specified. If not supplied, assumed to be 24 hours.
 On opening of app, the alert window will open to show tasks which have deadlines within the latest window specified.
@@ -233,7 +200,7 @@ Examples:
 - `alert` followed by `48` will show the alert window with all tasks which end within 48 hours.
 - `alert` alone will show the alert window with all tasks which end within 24 hours.
 
-### 2.10 Plan your month : `plan EFFORT`
+### Plan your month : `plan EFFORT`
 
 Automatically plans your month depending on your ideal `EFFORT` level per day. The planner will make an effort to
 keep as close to your effort level as possible, however, if it has to overload to complete tasks on time it will.
@@ -244,58 +211,44 @@ In order of priority, the planner will prioritise `Events`, then `Deadlines`, th
 Examples:
 - `plan 5` will plan your month according to an ideal effort level of 5 per day.
 
-### 2.11 Clearing all entries : `clear`
+### Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### 2.12 Exiting the program : `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-## 3. Storage 
+### Saving the data
 
-### 3.1 Saving the data
+AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-TaskBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### Editing the data file
 
-### 3.2 Editing the data file
-
-TaskBook data are saved as a JSON file `[JAR file location]/data/taskbook.json`. Advanced users are welcome to update data directly by editing that data file.
+AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, taskBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
 </div>
 
-### 3.3 Archiving data files `[coming in v2.0]`
+### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
+## FAQ
 
-### Q1: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
-
-### Q2: What is a valid Date?<br>
-**A**: A valid Date must be in the format of `YYYY-MM-DD HHMM` such as `2023-07-13 1800` (13 July 2023, 6PM). A valid Date must have a valid time. A minimum of 4 characters must be supplied and only a maximum of 4 character will be parsed
-  e.g. `2023-07-13 180` is invalid and `2023-07-13 18000000000` is understood as `2023-07-13 1800`
-
-### Q3: What is an effort level?<br>
-**A**: [_More details to come_]
-
-### Q4: What is a valid Description?<br>
-**A**: A valid Description is a text input that has at least one character.
-
-
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## Command summary
 
 | Action     | Format, Examples                                                                                                    |
 |------------|---------------------------------------------------------------------------------------------------------------------|
